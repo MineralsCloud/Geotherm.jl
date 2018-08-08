@@ -15,10 +15,12 @@ module GeoTherm
 
 using Reexport
 
+include("LoadData.jl")
 include("data.jl")
 include("interp.jl")
 include("integrate.jl")
 
+@reexport using LoadData
 @reexport using data
 @reexport using interp
 @reexport using integrate
