@@ -1,7 +1,7 @@
 """
 # module integrate
 
-- Julia version: 0.7
+- Julia version: 1.0
 - Author: qz
 - Date: 2018-08-08
 
