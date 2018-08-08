@@ -13,7 +13,7 @@ julia>
 """
 module Integrate
 
-import data: Point
+import Geometry: Point
 
 export runge_kutta
 

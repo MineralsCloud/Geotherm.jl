@@ -13,7 +13,7 @@ julia>
 """
 module Interpolate
 
-using Geometry: Point, Rectangle, rectangle_to_points
+using Geometry: Point, Rectangle, rectangle_to_points, within_boundary
 
 export linear_interpolate, bilinear_interpolate
 
