@@ -1,5 +1,5 @@
 """
-# module integrate
+# module Integrate
 
 - Julia version: 1.0
 - Author: qz
@@ -11,7 +11,7 @@
 julia>
 ```
 """
-module integrate
+module Integrate
 
 import data: Point
 

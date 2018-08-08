@@ -1,5 +1,5 @@
 #=
-bilinear:
+Interpolate:
 - Julia version: 0.7
 - Author: qz
 - Date: 2018-08-08

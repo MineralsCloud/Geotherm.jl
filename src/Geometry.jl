@@ -1,5 +1,5 @@
 """
-# module data
+# module Geometry
 
 - Julia version: 1.0
 - Author: qz
@@ -11,7 +11,7 @@
 julia>
 ```
 """
-module data
+module Geometry
 
 export Point, Rectangle, rectangle_to_points
 

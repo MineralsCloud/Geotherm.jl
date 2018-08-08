@@ -1,5 +1,5 @@
 """
-# module interp
+# module Interpolate
 
 - Julia version: 1.0
 - Author: qz
@@ -11,7 +11,7 @@
 julia>
 ```
 """
-module interp
+module Interpolate
 
 using data: Point, Rectangle, rectangle_to_points
 
