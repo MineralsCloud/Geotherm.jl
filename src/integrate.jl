@@ -13,7 +13,6 @@ julia>
 """
 module integrate
 
-include("./data.jl")
 import data: Point
 
 export runge_kutta

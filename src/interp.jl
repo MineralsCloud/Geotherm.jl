@@ -13,7 +13,6 @@ julia>
 """
 module interp
 
-include("data.jl")
 using data: Point, Rectangle, rectangle_to_points
 
 export within_boundary, linear_interpolate, bilinear_interpolate
