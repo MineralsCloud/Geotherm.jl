@@ -23,7 +23,7 @@ function runge_kutta(p0::Point{T}, f::Function; h=0.01) where T <: Real
     k2 = h * f(x0 + h / 2, y0 + k1 / 2)
     k3 = h * f(x0 + h / 2, y0 + k2 / 2)
     k4 = h * f(x0 + h, y0 + k3)
-    y0 + (k1 + 2 * k2 + 2 * k3 + k4) / 6
+    Point(x0 + h, y0 + (k1 + 2 * k2 + 2 * k3 + k4) / 6)
 end
 
 end
