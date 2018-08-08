@@ -15,8 +15,8 @@ module LoadData
 
 using CSV, DataFrames
 
-export load
+export load_csv
 
-load(d::Dict{String, String}) = Dict(k => CSV.read(v) for (k, v) in d)
+load_csv(d::Dict{String, String}) = Dict(k => CSV.read(v) for (k, v) in d)
 
 end
