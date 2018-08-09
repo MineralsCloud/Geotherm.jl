@@ -11,4 +11,4 @@ using GeoTherm: bind, Point, Rectangle
 
 @show methods(bind)
 
-@show bind(Point(1.0, 2.0), Rectangle(0.0, 100.0, 0.0, 100.0); n=10)
+@show bind(Point(50.0, 50.0), Rectangle(0.0, 0.0, 100.0, 200.0); n=100)
