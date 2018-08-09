@@ -24,7 +24,7 @@ end
 
 function bilinear_interpolate(rec::Rectangle{T})::Function where T <: Real
     function (x, y)
-        within_boundary(rec, Point(x, y)) || error("The point is out of boundary!")
+        within_boundary(rec, Point(x, y)) || error("The point ($x, $y) is out of boundary!")
         a, b, c, d = rectangle_to_points(rec)
         y1, y2 = a.y, b.y
         f1 = linear_interpolate(a, c)
