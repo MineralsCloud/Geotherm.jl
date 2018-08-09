@@ -32,12 +32,12 @@ end
 
 Rectangle(lx::T, ly::T, rx::T, ry::T) where T <: Real = Rectangle{T}(lx, ly, rx, ry)
 
-function rectangle_to_points(rec::Rectangle{T}) where T <: Real
+function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
     lx, rx, ly, ry = rec.lx, rec.ly, rec.rx, rec.ry
     Point(lx, ly), Point(lx, ry), Point(rx, ly), Point(rx, ry)
 end
 
-function within_boundary(rec::Rectangle{T}, t::Point{T}) where T <: Real
+function within_boundary(rec::Rectangle{T}, t::Point{T})::Bool where T <: Real
     lx, rx, ly, ry = rec.lx, rec.ly, rec.rx, rec.ry
     x, y = t.x, t.y
     lx < x < rx && ly < y < ry

@@ -17,12 +17,12 @@ using Geometry: Point, Rectangle, rectangle_to_points, within_boundary
 
 export linear_interpolate, bilinear_interpolate
 
-function linear_interpolate(a::Point{T}, b::Point{T}) where T <: Real
+function linear_interpolate(a::Point{T}, b::Point{T})::Function where T <: Real
     x1, x2, y1, y2 = a.x, b.x, a.y, b.y
     x -> ((x2 - x) * y1 + (x - x1) * y2) / (x2 - x1)
 end
 
-function bilinear_interpolate(rec::Rectangle{T}) where T <: Real
+function bilinear_interpolate(rec::Rectangle{T})::Function where T <: Real
     function (x, y)
         within_boundary(rec, Point(x, y)) || error("The point is out of boundary!")
         a, b, c, d = rectangle_to_points(rec)
