@@ -15,6 +15,8 @@ module Plot
 
 using GR
 
+export plot_trace
+
 function plot_trace(ps)
     xs = map(p -> p.x, ps)
     ys = map(p -> p.y, ps)
