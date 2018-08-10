@@ -28,7 +28,7 @@ end
 
 function runge_kutta(p0::Point{T}, f::Function, h=0.01; n=1000) where T <: Real
     trace = Point{T}[p0]
-    for i in 1:n - 1
+    for i in 1:(n - 1)
         p_next = runge_kutta_iter(trace[i], f)
         push!(trace, p_next)
     end
