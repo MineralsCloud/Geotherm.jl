@@ -7,12 +7,6 @@ Bind:
 
 using Test
 
-using Suppressor
+using GeoTherm: bind, Point, Rectangle
 
-using GeoTherm: bind, Point, Rectangle, pre
-
-@show methods(bind)
-
-@show bind(Point(50.0, 50.0), Rectangle(0.0, 0.0, 100.0, 200.0); n=100)
-
-@show pre(Point(3.5, 3.6), rand(1.0:10.0, 10, 10))
+@show bind(Point(50.0, 50.0), collect(0.0:1000.0), collect(0.0:1000.0), 0.01, 100)

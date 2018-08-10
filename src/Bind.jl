@@ -15,23 +15,28 @@ module Bind
 
 using NearestNeighbors
 
-using Geometry: Point, Rectangle, point_to_vector
+using Geometry: Point, Rectangle
 using Interpolate: bilinear_interpolate
-using Integrate: runge_kutta
+using Integrate: runge_kutta_iter
 
 import Base.bind
 
-export bind, pre
+export bind
 
-function pre(p::Point, adiabat::Matrix)
-    x, y = p.x, p.y
-    tree = NearestNeighbors.KDTree(adiabat)
-    index, _ = NearestNeighbors.knn(tree, p, 1)
-    adiabat[index]
+function find_nearest(arr::Vector{T}, x::T)::Integer where T <: Real
+    argmin(map(abs, arr .- x))
 end
 
-function bind(p0::Point{T}, rec::Rectangle{T}, h=0.01; n=1000) where T <: Real
-    # runge_kutta(p0, bilinear_interpolate(rec), h; n=n)
+function bind(p0::Point{T}, ts::Vector{T}, ps::Vector{T}, h=0.01, n=1000) where T <: Real
+    trace = Point{T}[p0]
+    for k in 1:(n - 1)
+        i, j = promote(1.0, find_nearest(ts, trace[k].x), find_nearest(ps, trace[k].y))
+        @show i, j
+        rec_next = Rectangle(i, j, i + 1, j + 1)
+        p_next = runge_kutta_iter(trace[k], bilinear_interpolate(rec_next), h)
+        push!(trace, p_next)
+    end
+    trace
 end
 
 end
