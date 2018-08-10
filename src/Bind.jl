@@ -8,12 +8,11 @@
 # Examples
 
 ```jldoctest
-julia>
+julia> find_nearest(collect(1:10.0), 3.6)
+4
 ```
 """
 module Bind
-
-using NearestNeighbors
 
 using Geometry: Point, Rectangle
 using Interpolate: bilinear_interpolate
@@ -24,7 +23,7 @@ import Base.bind
 export bind
 
 function find_nearest(arr::Vector{T}, x::T)::Integer where T <: Real
-    argmin(map(abs, arr .- x))
+    argmin(abs.(arr .- x))
 end
 
 function bind(p0::Point{T}, ts::Vector{T}, ps::Vector{T}, h=0.01, n=1000) where T <: Real
