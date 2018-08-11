@@ -21,12 +21,12 @@ linear_interpolate(a, b, f, g)::Function = x -> ((b - x) * f + (x - a) * g) / (b
 
 function bilinear_interpolate(p::Manifold, q::Manifold, r::Manifold, s::Manifold)::Function
     x1, x2, y1, y2 = p.p.x, q.p.x, p.p.y, q.p.y
-    f11, f21, f12, f22 = p.z, q.z, r.z, s.z
+    z1, z2, z3, z4 = p.z, q.z, r.z, s.z
     rec = Rectangle(x1, x2, y1, y2)
     function (x, y)
         within_rectangle(rec, Point(x, y)) || error("The point ($x, $y) is out of boundary!")
-        f1 = linear_interpolate(x1, x2, f11, f21)
-        f2 = linear_interpolate(x1, x2, f12, f22)
+        f1 = linear_interpolate(x1, x2, z1, z2)
+        f2 = linear_interpolate(x1, x2, z3, z4)
         linear_interpolate(y1, y2, f1(x), f2(x))(y)
     end
 end
