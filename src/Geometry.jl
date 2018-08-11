@@ -34,7 +34,7 @@ Rectangle(lx::T, ly::T, rx::T, ry::T) where T <: Real = Rectangle{T}(lx, ly, rx,
 
 struct Manifold{T <: Real}
     p::Point{T}
-    v::T
+    z::T
 end
 
 function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
