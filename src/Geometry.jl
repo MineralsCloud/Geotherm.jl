@@ -13,7 +13,7 @@ julia>
 """
 module Geometry
 
-export Point, Rectangle, rectangle_to_points, within_boundary
+export Point, Rectangle, Manifold, rectangle_to_points, within_boundary
 
 struct Point{T <: Real}
     x::T
@@ -31,6 +31,11 @@ struct Rectangle{T <: Real}
 end
 
 Rectangle(lx::T, ly::T, rx::T, ry::T) where T <: Real = Rectangle{T}(lx, ly, rx, ry)
+
+struct Manifold{T <: Real}
+    p::Point{T}
+    v::T
+end
 
 function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
     lx, rx, ly, ry = rec.lx, rec.ly, rec.rx, rec.ry
