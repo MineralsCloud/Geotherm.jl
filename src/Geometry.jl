@@ -32,9 +32,9 @@ end
 
 Rectangle(lx::T, ly::T, rx::T, ry::T) where T <: Real = Rectangle{T}(lx, ly, rx, ry)
 
-struct Manifold{T <: Real}
-    p::Point{T}
-    z::T
+struct Manifold
+    p::Point
+    z::T where T <:Real
 end
 
 function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
