@@ -9,4 +9,4 @@ using Test
 
 using GeoTherm
 
-@test within_boundary(Rectangle(1, 10, 20, 40), Point(9, 60)) == false
+@test within_rectangle(Rectangle(1, 10, 20, 40), Point(9, 60)) == false
