@@ -14,7 +14,7 @@ julia> find_nearest(collect(1:10.0), 3.6)
 """
 module Bind
 
-using Geometry: Point, Rectangle
+using Geometry: Point, Rectangle, Manifold
 using Interpolate: bilinear_interpolate
 using Integrate: runge_kutta_iter
 
@@ -30,8 +30,12 @@ function bind(p0::Point{T}, ts::Vector{T}, ps::Vector{T}, h=0.01, n=1000) where 
     trace = Point{T}[p0]
     for k in 1:(n - 1)
         i, j = find_nearest(ts, trace[k].x), find_nearest(ps, trace[k].y)
-        rec_next = Rectangle(ts[i-5], ps[j-5], ts[i + 5], ps[j + 5])
-        p_next = runge_kutta_iter(trace[k], bilinear_interpolate(rec_next), h)
+        p_next = runge_kutta_iter(trace[k], bilinear_interpolate(
+            Manifold(Point(ts[i], ps[j]), adiabat[i, j]),
+            Manifold(Point(ts[i+1], ps[j]), adiabat[i+1, j]),
+            Manifold(Point(ts[i], ps[j+1]), adiabat[i, j+1]),
+            Manifold(Point(ts[i+1], ps[j+1]), adiabat[i+1, j+1])
+        ), h)
         push!(trace, p_next)
     end
     trace
