@@ -49,4 +49,8 @@ function within_rectangle(rec::Rectangle{T}, t::Point{T})::Bool where T <: Real
     lx < x < rx && ly < y < ry
 end
 
+function point_to_surface_point(p::Point{T}, z::T) where T <: Real
+    SurfacePoint(p.x, p.y, z)
+end
+
 end
