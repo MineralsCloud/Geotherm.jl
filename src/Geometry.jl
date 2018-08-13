@@ -25,8 +25,11 @@ struct Rectangle{T <: Real}
     ly::T
     rx::T
     ry::T
-    Rectangle{T}(lx::T, ly::T, rx::T, ry::T) where T <: Real =
+    function Rectangle{T}(lx::T, ly::T, rx::T, ry::T) where T <: Real
+        lx == rx || error("The `lx` and `ly` arguments cannot be the same!")
+        ly == ry || error("The `rx` and `ry` arguments cannot be the same!")
         new(min(lx, rx), max(lx, rx), min(ly, ry), max(ly, ry))
+    end
     Rectangle{T}(rec::Rectangle) where T <: Real = new(rec.lx, rec.ly, rec.rx, rec.ry)
 end
 
