@@ -32,8 +32,8 @@ function bind(adiabat::Matrix{T}, ts::Vector{T}, ps::Vector{T}, p0::Point{T}, h=
         i, j = find_nearest(ts, trace[k].x), find_nearest(ps, trace[k].y)
         f = bilinear_interpolate(
             point_to_surface_point(Point(ts[i], ps[j]), adiabat[i, j]),
-            point_to_surface_point(Point(ts[i+3], ps[j]), adiabat[i+3, j]),
             point_to_surface_point(Point(ts[i], ps[j+3]), adiabat[i, j+3]),
+            point_to_surface_point(Point(ts[i+3], ps[j]), adiabat[i+3, j]),
             point_to_surface_point(Point(ts[i+3], ps[j+3]), adiabat[i+3, j+3])
         )
         p_next = runge_kutta_iter(trace[k], f, h)
