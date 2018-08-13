@@ -13,7 +13,7 @@ julia>
 """
 module Interpolate
 
-using Geometry: Point, Rectangle, Manifold, rectangle_to_points, within_rectangle
+using Geometry: Point, Rectangle, SurfacePoint, rectangle_to_points, within_rectangle
 
 export bilinear_interpolate
 
@@ -30,8 +30,8 @@ linear_interpolate(a, b, f, g)::Function = x -> ((b - x) * f + (x - a) * g) / (b
 If 4 points consisting of a rectangle and their z-coordinates are known, return a bilinear interpolation of
 the 4 points.
 """
-function bilinear_interpolate(q11::Manifold, q12::Manifold, q21::Manifold, q22::Manifold)::Function
-    x1, x2, y1, y2 = q11.p.x, q21.p.x, q11.p.y, q22.p.y
+function bilinear_interpolate(q11::T, q12::T, q21::T, q22::T)::Function where T <: SurfacePoint
+    x1, x2, y1, y2 = q11.x, q21.x, q11.y, q22.y
     v11, v12, v21, v22 = q11.z, q12.z, q21.z, q22.z
     rec = Rectangle(x1, y1, x2, y2)
     function (x, y)
