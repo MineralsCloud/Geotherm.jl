@@ -7,7 +7,7 @@ LoadData:
 
 using Test
 
-using GeoTherm
+using Geotherm
 
 datafiles = Dict(
     "α" => "alpha_tp.csv",

@@ -7,7 +7,7 @@ LoadData:
 
 using GR
 
-using GeoTherm: plot_trace, Point, Rectangle, bind
+using Geotherm: plot_trace, Point, Rectangle, bind
 
 plot_trace(bind(Point(50.0, 50.0), Rectangle(0.0, 0.0, 100.0, 400.0); n=200))
 GR.savefig("trace.pdf")
