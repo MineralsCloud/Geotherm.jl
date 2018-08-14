@@ -1,5 +1,5 @@
 """
-# module GeoTherm
+# module Geotherm
 
 - Julia version: 1.0
 - Author: qz
@@ -11,7 +11,7 @@
 julia>
 ```
 """
-module GeoTherm
+module Geotherm
 
 using Reexport
 

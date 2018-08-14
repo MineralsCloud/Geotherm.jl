@@ -2,7 +2,7 @@
 
 using Test
 
-using GeoTherm
+using Geotherm
 
 tic()
 println("Test 1")

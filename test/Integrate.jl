@@ -7,7 +7,7 @@ Integrate:
 
 using Test
 
-using GeoTherm
+using Geotherm
 
 @test runge_kutta_iter(Point(1.0, 1.0), (x, y) -> x * 2 + y * 3) == Point{Float64}(1.01, 1.05085856375)
 

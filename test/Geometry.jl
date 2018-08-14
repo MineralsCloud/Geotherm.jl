@@ -7,6 +7,6 @@ Integrate:
 
 using Test
 
-using GeoTherm
+using Geotherm
 
 @test within_rectangle(Rectangle(1, 10, 20, 40), Point(9, 60)) == false
