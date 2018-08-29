@@ -15,17 +15,23 @@ module Interpolate
 
 using Geotherm.Geometry: Point, Rectangle, SurfacePoint, rectangle_to_points, within_rectangle
 
-export bilinear_interpolate
+export Mapping, linear_interpolate, bilinear_interpolate
+
+struct Mapping
+    x
+    y
+end
 
 """
-    linear_interpolate(a, b, f, g)
+    inear_interpolate(a::Mapping, b::Mapping)
 
-Return a function of the linear interpolation between any 2 abstract data points `(a, f)` and `(b, g)`.
+Return a function of the linear interpolation between any 2 abstract data points `(x1, f(x1))` and `(x2, g(x2))`.
 """
-function linear_interpolate(a, b, f, g)::Function
-    a != b || error("The argument `a` cannot equal to the argument `b`!")
+function linear_interpolate(a::Mapping, b::Mapping)::Function
+    x1, x2, y1, y2 = a.x, b.x, a.y, b.y
+    x1 != x2 || error("The x-coordinates of the 2 arguments `a` and `b` cannot be equal!")
 
-    x -> ((b - x) * f + (x - a) * g) / (b - a)
+    x -> ((x2 - x) * y1 + (x - x1) * y2) / (x2 - x1)
 end
 
 """
@@ -41,9 +47,9 @@ function bilinear_interpolate(q11::T, q12::T, q21::T, q22::T)::Function where T 
 
     function (x, y)
         within_rectangle(rec, Point(x, y)) || error("The point ($x, $y) is out of boundary $rec!")
-        v1 = linear_interpolate(x1, x2, v11, v21)(x)
-        v2 = linear_interpolate(x1, x2, v12, v22)(x)
-        linear_interpolate(y1, y2, v1, v2)(y)
+        v1 = linear_interpolate(Mapping(x1, v11), Mapping(x2, v21))(x)
+        v2 = linear_interpolate(Mapping(x1, v12), Mapping(x2, v22))(x)
+        linear_interpolate(Mapping(y1, v1), Mapping(y2, v2))(y)
     end
 end
 
