@@ -13,7 +13,7 @@ julia>
 """
 module Integrate
 
-import Geometry: Point
+using Geotherm.Geometry: Point
 
 export runge_kutta_iter, runge_kutta
 

@@ -17,9 +17,9 @@ module Bind
 using BisectPy: bisect_right
 using DataFrames
 
-using Geometry: Point, Rectangle, SurfacePoint
-using Interpolate: bilinear_interpolate
-using Integrate: runge_kutta_iter
+using Geotherm.Geometry: Point, Rectangle, SurfacePoint
+using Geotherm.Interpolate: bilinear_interpolate
+using Geotherm.Integrate: runge_kutta_iter
 
 export find_lower_bounds, inject_find_lower_bound, generate_trace
 
