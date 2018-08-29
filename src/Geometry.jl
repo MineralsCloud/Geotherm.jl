@@ -15,12 +15,14 @@ module Geometry
 
 export Point, Rectangle, SurfacePoint, Mapping, rectangle_to_points, within_rectangle
 
-struct Point{T <: Real}
+abstract type AbstractPoint end
+
+struct Point{T <: Real} <: AbstractPoint
     x::T
     y::T
 end
 
-struct Mapping
+struct Mapping <: AbstractPoint
     x
     y
 end
@@ -47,7 +49,6 @@ struct SurfacePoint{T <: Real}
 end
 
 SurfacePoint(x::T, y::T, z::T) where T <: Real = SurfacePoint{T}(x, y, z)
-SurfacePoint(Mapping(Point(x, y), z)) = SurfacePoint(x, y, z)
 
 function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
