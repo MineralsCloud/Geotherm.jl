@@ -1,0 +1,3 @@
+[submodule "BisectPy.jl"]
+	path = BisectPy.jl
+	url = git@github.com:singularitti/BisectPy.jl.git
