@@ -13,14 +13,9 @@ julia>
 """
 module Interpolate
 
-using Geotherm.Geometry: Point, Rectangle, SurfacePoint, rectangle_to_points, within_rectangle
+using Geotherm.Geometry: Point, Rectangle, SurfacePoint, Mapping, rectangle_to_points, within_rectangle
 
-export Mapping, linear_interpolate, bilinear_interpolate
-
-struct Mapping
-    x
-    y
-end
+export linear_interpolate, bilinear_interpolate
 
 """
     inear_interpolate(a::Mapping, b::Mapping)
