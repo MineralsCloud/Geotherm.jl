@@ -1,9 +1,7 @@
 """
 # module Gradient
 
-- Julia version: 1.0
-- Author: qz
-- Date: 2018-08-08
+
 
 # Examples
 

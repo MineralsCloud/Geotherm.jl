@@ -1,9 +1,7 @@
 """
 # module Bind
 
-- Julia version: 1.0
-- Author: qz
-- Date: 2018-08-09
+
 
 # Examples
 
