@@ -41,7 +41,7 @@ end
 
 function generate_trace(geothermal_gradient::DataFrame, p0::Point{T}, h=0.01, n=1000) where T <: Real
     ps = float(names(geothermal_gradient))
-    ts = float(geothermal_gradient[:T(K)\P(GPa)])
+    ts = float(geothermal_gradient[Symbol("T(K)\P(GPa)")])
 
     trace = Point{T}[]
     push!(trace, p0)
