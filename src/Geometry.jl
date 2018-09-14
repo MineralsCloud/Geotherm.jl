@@ -13,7 +13,9 @@ module Geometry
 
 export CartesianCoordinates, Rectangle, rectangle_to_points, within_rectangle
 
+CartesianCoordinates(x::T) where T <: Real = NamedTuple{tuple(:x), Tuple{T}}((x))
 CartesianCoordinates(x::T, y::T) where T <: Real = NamedTuple{(:x, :y), Tuple{T, T}}((x, y))
+CartesianCoordinates(x::T, y::T, z::T) where T <: Real = NamedTuple{(:x, :y, :z), Tuple{T, T, T}}((x, y, z))
 
 struct Rectangle{T <: Real}
     lx::T
@@ -35,10 +37,9 @@ function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: 
     Point(lx, ly), Point(lx, uy), Point(rx, ly), Point(rx, uy)
 end
 
-function within_rectangle(rec::Rectangle{T}, p::Point{T})::Bool where T <: Real
+function within_rectangle(rec::Rectangle{T}, c::CartesianCoordinates(::T, ::T))::Bool where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
-    x, y = p.x, p.y
-    lx <= x <= rx && ly <= y <= uy
+    lx <= c.x <= rx && ly <= c.y <= uy
 end
 
 end
