@@ -13,9 +13,11 @@ module Geometry
 
 export CartesianCoordinates, Rectangle, rectangle_to_points, within_rectangle
 
-CartesianCoordinates(x::T) where T <: Real = NamedTuple{tuple(:x), Tuple{T}}((x))
-CartesianCoordinates(x::T, y::T) where T <: Real = NamedTuple{(:x, :y), Tuple{T, T}}((x, y))
-CartesianCoordinates(x::T, y::T, z::T) where T <: Real = NamedTuple{(:x, :y, :z), Tuple{T, T, T}}((x, y, z))
+axisnames = (:x, :y, :z, :u, :v, :w)
+
+function CartesianCoordinates(x::Vararg{T, N}) where T <: Real where N
+    NamedTuple{tuple(axisnames[1:N]...), NTuple{N, T}}((x))
+end
 
 struct Rectangle{T <: Real}
     lx::T
