@@ -15,8 +15,8 @@ export CartesianCoordinates, Rectangle, rectangle_to_points, within_rectangle
 
 axisnames = (:x, :y, :z, :u, :v, :w, :r, :s, :t, :o, :p, :q, :l, :m, :n, :i, :j, :k)
 
-function CartesianCoordinates(x::Vararg{T, N}) where {N, T <: Real}
-    NamedTuple{tuple(axisnames[1:N]...), NTuple{N, T}}((x))
+function CartesianCoordinates(t::Vararg{T, N}) where {N, T <: Real}
+    NamedTuple{tuple(axisnames[1:N]...), NTuple{N, T}}((t))
 end
 
 struct Rectangle{T <: Real}
