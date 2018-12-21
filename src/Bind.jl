@@ -39,11 +39,11 @@ function inject_find_lower_bound(ps, ts, geothermal_gradient)
     end
 end
 
-function generate_trace(geothermal_gradient::DataFrame, p0::Point2D, h=0.01, n=1000) where T <: Real
+function generate_trace(geothermal_gradient::DataFrame, p0::Point2D, h=0.01, n=1000)
     ps = float(names(geothermal_gradient))
     ts = float(geothermal_gradient[Symbol("T(K)\\P(GPa)")])
 
-    trace = Point2D{T}[]
+    trace = Point2D[]
     push!(trace, p0)
     f = inject_find_lower_bound(ps, ts, geothermal_gradient)
     for i = 1:(n - 1)
