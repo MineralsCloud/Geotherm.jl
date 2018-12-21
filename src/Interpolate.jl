@@ -16,9 +16,9 @@ using Geotherm.Geometry: Point2D, Point3D, Rectangle, within_rectangle
 export linear_interpolate, bilinear_interpolate
 
 """
-    inear_interpolate(a::Pair, b::Pair)
+    linear_interpolate(a, b)
 
-Return a function of the linear interpolation between any 2 rule of assignments `(x1, f(x1))` and `(x2, g(x2))`.
+Return a function of the linear interpolation between any 2 points `(x1, f(x1))` and `(x2, g(x2))`.
 """
 function linear_interpolate(a::Point2D, b::Point2D)::Function
     x1, x2 = a.x, b.x
