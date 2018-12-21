@@ -13,7 +13,7 @@ julia> find_nearest(collect(1:10.0), 3.6)
 module Bind
 
 using BisectPy: bisect_right
-using DataFrames
+using DataFrames: DataFrame
 
 using Geotherm.Geometry: Point2D, Point3D, Rectangle
 using Geotherm.Interpolate: bilinear_interpolate
@@ -41,7 +41,7 @@ end
 
 function generate_trace(geothermal_gradient::DataFrame, p0::Point2D, h=0.01, n=1000) where T <: Real
     ps = float(names(geothermal_gradient))
-    ts = float(geothermal_gradient[Symbol("T(K)\P(GPa)")])
+    ts = float(geothermal_gradient[Symbol("T(K)\\P(GPa)")])
 
     trace = Point2D{T}[]
     push!(trace, p0)
