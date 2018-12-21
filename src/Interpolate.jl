@@ -11,7 +11,7 @@ julia>
 """
 module Interpolate
 
-using Geotherm.Geometry: Point2D, Point3D, Rectangle, within_rectangle
+using Geotherm.Geometry: Point2D, Point3D, Rectangle
 
 export linear_interpolate, bilinear_interpolate
 
