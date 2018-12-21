@@ -16,7 +16,7 @@ using StaticArrays: FieldVector
 import Base: in
 
 export Point, Point2D, Point3D,
-    Rectangle, rectangle_to_points, within_rectangle,
+    Rectangle, rectangle_vertices, within_rectangle,
     in
 
 abstract type Point{N, Float64} <: FieldVector{N, Float64} end
@@ -47,7 +47,7 @@ end
 
 Rectangle(lx::T, rx::T, ly::T, uy::T) where T <: Real = Rectangle{T}(lx, rx, ly, uy)
 
-function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
+function rectangle_vertices(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
