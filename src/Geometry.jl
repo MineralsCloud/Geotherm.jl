@@ -13,8 +13,11 @@ module Geometry
 
 using StaticArrays: FieldVector
 
+import Base: in
+
 export Point, Point2D, Point3D,
-    Rectangle, rectangle_to_points, within_rectangle
+    Rectangle, rectangle_to_points, within_rectangle,
+    in
 
 abstract type Point{N, Float64} <: FieldVector{N, Float64} end
 
@@ -49,7 +52,7 @@ function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point2D} where T <: R
     Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
 
-function within_rectangle(rec::Rectangle{T}, c::Point2D)::Bool where T <: Real
+function in(c::Point2D, rec::Rectangle{T})::Bool where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     lx <= c.x <= rx && ly <= c.y <= uy
 end
