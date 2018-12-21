@@ -44,9 +44,9 @@ end
 
 Rectangle(lx::T, rx::T, ly::T, uy::T) where T <: Real = Rectangle{T}(lx, rx, ly, uy)
 
-function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
+function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
-    Point(lx, ly), Point(lx, uy), Point(rx, ly), Point(rx, uy)
+    Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
 
 function within_rectangle(rec::Rectangle{T}, c::Point2D)::Bool where T <: Real
