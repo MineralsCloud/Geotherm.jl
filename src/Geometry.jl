@@ -13,7 +13,8 @@ module Geometry
 
 using StaticArrays: FieldVector
 
-export CartesianCoordinates, Rectangle, rectangle_to_points, within_rectangle
+export Point, Point2D, Point3D,
+    Rectangle, rectangle_to_points, within_rectangle
 
 abstract type Point{N, Float64} <: FieldVector{N, Float64} end
 
