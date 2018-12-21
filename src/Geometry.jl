@@ -11,12 +11,21 @@ julia>
 """
 module Geometry
 
+using StaticArrays: FieldVector
+
 export CartesianCoordinates, Rectangle, rectangle_to_points, within_rectangle
 
-axisnames = (:first, :second, :third, :fourth, :fifth, :sixth)
+abstract type Point{N, Float64} <: FieldVector{N, Float64} end
 
-function CartesianCoordinates(t::Vararg{T, N}) where {N, T <: Real}
-    NamedTuple{tuple(axisnames[1:N]...), NTuple{N, T}}((t))
+struct Point2D <: Point{2, Float64}
+    x::Float64
+    y::Float64
+end
+
+struct Point3D <: Point{3, Float64}
+    x::Float64
+    y::Float64
+    z::Float64
 end
 
 struct Rectangle{T <: Real}
@@ -39,7 +48,7 @@ function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: 
     Point(lx, ly), Point(lx, uy), Point(rx, ly), Point(rx, uy)
 end
 
-function within_rectangle(rec::Rectangle{T}, c::CartesianCoordinates(::Vararg{T, 2}))::Bool where T <: Real
+function within_rectangle(rec::Rectangle{T}, c::Point2D)::Bool where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     lx <= c.x <= rx && ly <= c.y <= uy
 end
