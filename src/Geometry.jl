@@ -11,18 +11,25 @@ julia>
 """
 module Geometry
 
-export Point, Rectangle, SurfacePoint, Mapping, rectangle_to_points, within_rectangle
+using StaticArrays: FieldVector
 
-abstract type AbstractPoint end
+import Base: in
 
-struct Point{T <: Real} <: AbstractPoint
-    x::T
-    y::T
+export Point, Point2D, Point3D,
+    Rectangle, rectangle_vertices, within_rectangle,
+    in
+
+abstract type Point{N, Float64} <: FieldVector{N, Float64} end
+
+struct Point2D <: Point{2, Float64}
+    x::Float64
+    y::Float64
 end
 
-struct Mapping <: AbstractPoint
-    x
-    y
+struct Point3D <: Point{3, Float64}
+    x::Float64
+    y::Float64
+    z::Float64
 end
 
 struct Rectangle{T <: Real}
@@ -40,23 +47,14 @@ end
 
 Rectangle(lx::T, rx::T, ly::T, uy::T) where T <: Real = Rectangle{T}(lx, rx, ly, uy)
 
-struct SurfacePoint{T <: Real}
-    x::T
-    y::T
-    z::T
+function rectangle_vertices(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
+    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
+    Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
 
-SurfacePoint(x::T, y::T, z::T) where T <: Real = SurfacePoint{T}(x, y, z)
-
-function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
+function in(c::Point2D, rec::Rectangle{T})::Bool where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
-    Point(lx, ly), Point(lx, uy), Point(rx, ly), Point(rx, uy)
-end
-
-function within_rectangle(rec::Rectangle{T}, p::Point{T})::Bool where T <: Real
-    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
-    x, y = p.x, p.y
-    lx <= x <= rx && ly <= y <= uy
+    lx <= c.x <= rx && ly <= c.y <= uy
 end
 
 end
