@@ -1,9 +1,7 @@
 """
 # module Geometry
 
-- Julia version: 1.0
-- Author: qz
-- Date: 2018-08-08
+
 
 # Examples
 
@@ -13,49 +11,50 @@ julia>
 """
 module Geometry
 
-export Point, Rectangle, SurfacePoint, rectangle_to_points, within_rectangle
+using StaticArrays: FieldVector
 
-struct Point{T <: Real}
-    x::T
-    y::T
+import Base: in
+
+export Point, Point2D, Point3D,
+    Rectangle, rectangle_vertices, within_rectangle,
+    in
+
+abstract type Point{N, Float64} <: FieldVector{N, Float64} end
+
+struct Point2D <: Point{2, Float64}
+    x::Float64
+    y::Float64
+end
+
+struct Point3D <: Point{3, Float64}
+    x::Float64
+    y::Float64
+    z::Float64
 end
 
 struct Rectangle{T <: Real}
     lx::T
-    ly::T
     rx::T
-    ry::T
-    function Rectangle{T}(lx::T, ly::T, rx::T, ry::T) where T <: Real
+    ly::T
+    uy::T
+    function Rectangle{T}(lx::T, rx::T, ly::T, uy::T) where T <: Real
         lx != rx || error("The `lx` and `rx` arguments cannot be the same!")
-        ly != ry || error("The `ly` and `ry` arguments cannot be the same!")
-        new(min(lx, rx), max(lx, rx), min(ly, ry), max(ly, ry))
+        ly != uy || error("The `ly` and `uy` arguments cannot be the same!")
+        new(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
     end
-    Rectangle{T}(rec::Rectangle) where T <: Real = new(rec.lx, rec.ly, rec.rx, rec.ry)
+    Rectangle{T}(rec::Rectangle) where T <: Real = new(rec.lx, rec.rx, rec.ly, rec.uy)
 end
 
-Rectangle(lx::T, ly::T, rx::T, ry::T) where T <: Real = Rectangle{T}(lx, ly, rx, ry)
+Rectangle(lx::T, rx::T, ly::T, uy::T) where T <: Real = Rectangle{T}(lx, rx, ly, uy)
 
-struct SurfacePoint{T <: Real}
-    x::T
-    y::T
-    z::T
+function rectangle_vertices(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
+    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
+    Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
 
-SurfacePoint(x::T, y::T, z::T) where T <: Real = SurfacePoint{T}(x, y, z)
-
-function rectangle_to_points(rec::Rectangle{T})::NTuple{4, Point{T}} where T <: Real
-    lx, rx, ly, ry = rec.lx, rec.ly, rec.rx, rec.ry
-    Point(lx, ly), Point(lx, ry), Point(rx, ly), Point(rx, ry)
-end
-
-function within_rectangle(rec::Rectangle{T}, t::Point{T})::Bool where T <: Real
-    lx, rx, ly, ry = rec.lx, rec.ly, rec.rx, rec.ry
-    x, y = t.x, t.y
-    lx <= x <= rx && ly <= y <= ry
-end
-
-function point_to_surface_point(p::Point{T}, z::T) where T <: Real
-    SurfacePoint(p.x, p.y, z)
+function in(c::Point2D, rec::Rectangle{T})::Bool where T <: Real
+    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
+    lx <= c.x <= rx && ly <= c.y <= uy
 end
 
 end

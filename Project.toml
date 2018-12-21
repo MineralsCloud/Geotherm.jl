@@ -1,6 +1,10 @@
-authors = ["Qi Zhang <singularitti@outlook.com>"]
 name = "Geotherm"
 uuid = "8d306a12-9b36-11e8-3bde-e7538e1f5b4a"
+authors = ["Qi Zhang <singularitti@outlook.com>"]
 version = "0.1.0"
 
 [deps]
+BisectPy = "e91bece4-a713-11e8-30d4-f1bdfdaa459e"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"

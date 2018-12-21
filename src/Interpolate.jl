@@ -1,9 +1,7 @@
 """
 # module Interpolate
 
-- Julia version: 1.0
-- Author: qz
-- Date: 2018-08-08
+
 
 # Examples
 
@@ -13,16 +11,23 @@ julia>
 """
 module Interpolate
 
-using Geometry: Point, Rectangle, SurfacePoint, rectangle_to_points, within_rectangle
+using Geotherm.Geometry: Point2D, Point3D, Rectangle
 
-export bilinear_interpolate
+export linear_interpolate, bilinear_interpolate
 
 """
-    linear_interpolate(a, b, f, g)
+    linear_interpolate(a, b)
 
-Return a function of the linear interpolation between any 2 abstract data points `(a, f)` and `(b, g)`.
+Return a function of the linear interpolation between any 2 points `(x1, f(x1))` and `(x2, g(x2))`.
 """
-linear_interpolate(a, b, f, g)::Function = x -> ((b - x) * f + (x - a) * g) / (b - a)
+function linear_interpolate(a::Point2D, b::Point2D)::Function
+    x1, x2 = a.x, b.x
+    y1, y2 = a.y, b.y
+    x1 != x2 || error("The x-coordinates of the 2 arguments `a` and `b` cannot be equal!")
+
+    x -> ((x2 - x) * y1 + (x - x1) * y2) / (x2 - x1)
+end
+linear_interpolate(a::NTuple{2, Float64}, b::NTuple{2, Float64}) = linear_interpolate(Point2D(a), Point2D(b))
 
 """
     bilinear_interpolate(q11, q12, q21, q22)
@@ -30,15 +35,17 @@ linear_interpolate(a, b, f, g)::Function = x -> ((b - x) * f + (x - a) * g) / (b
 If 4 points consisting of a rectangle and their z-coordinates are known, return a bilinear interpolation of
 the 4 points.
 """
-function bilinear_interpolate(q11::T, q12::T, q21::T, q22::T)::Function where T <: SurfacePoint
-    x1, x2, y1, y2 = q11.x, q21.x, q11.y, q22.y
-    v11, v12, v21, v22 = q11.z, q12.z, q21.z, q22.z
+function bilinear_interpolate(q11::T, q12::T, q21::T, q22::T)::Function where T <: Point3D
+    x1, x2 = q11.x, q21.x
+    y1, y2 = q11.y, q22.y
+    z11, z12, z21, z22 = [q11, q12, q21, q22] |> q -> q.z
     rec = Rectangle(x1, y1, x2, y2)
+
     function (x, y)
-        within_rectangle(rec, Point(x, y)) || error("The point ($x, $y) is out of boundary!")
-        v1 = linear_interpolate(x1, x2, v11, v21)(x)
-        v2 = linear_interpolate(x1, x2, v12, v22)(x)
-        linear_interpolate(y1, y2, v1, v2)(y)
+        Point2D(x, y) in rec || error("The point ($x, $y) is out of boundary $rec!")
+        v1 = linear_interpolate((x1, z11), (x2, z21))(x)
+        v2 = linear_interpolate((x1, z12), (x2, z22))(x)
+        linear_interpolate((y1, v1), (y2, v2))(y)
     end
 end
 

@@ -1,9 +1,7 @@
 """
 # module Bind
 
-- Julia version: 1.0
-- Author: qz
-- Date: 2018-08-09
+
 
 # Examples
 
@@ -14,30 +12,42 @@ julia> find_nearest(collect(1:10.0), 3.6)
 """
 module Bind
 
-using Geometry: Point, Rectangle, SurfacePoint, point_to_surface_point
-using Interpolate: bilinear_interpolate
-using Integrate: runge_kutta_iter
+using BisectPy: bisect_right
+using DataFrames: DataFrame
 
-import Base.bind
+using Geotherm.Geometry: Point2D, Point3D, Rectangle
+using Geotherm.Interpolate: bilinear_interpolate
+using Geotherm.Integrate: runge_kutta_iter
 
-export bind
+export find_lower_bounds, inject_find_lower_bound, generate_trace
 
-function find_nearest(arr::Vector{T}, x::T)::Integer where T <: Real
-    argmin(abs.(arr .- x))
+function find_lower_bounds(xs, ys)::Function
+    (x, y) -> bisect_right(xs, x) - 1, bisect_right(ys, y) - 1
 end
 
-function bind(adiabat::Matrix{T}, ts::Vector{T}, ps::Vector{T}, p0::Point{T}, h=0.01, n=1000) where T <: Real
-    trace = Point{T}[p0]
-    for k in 1:(n - 1)
-        i, j = find_nearest(ts, trace[k].x), find_nearest(ps, trace[k].y)
-        f = bilinear_interpolate(
-            point_to_surface_point(Point(ts[i], ps[j]), adiabat[i, j]),
-            point_to_surface_point(Point(ts[i], ps[j+3]), adiabat[i, j+3]),
-            point_to_surface_point(Point(ts[i+3], ps[j]), adiabat[i+3, j]),
-            point_to_surface_point(Point(ts[i+3], ps[j+3]), adiabat[i+3, j+3])
+function inject_find_lower_bound(ps, ts, geothermal_gradient)
+    function (x, y)
+        m, n = find_lower_bounds(ps, ts)(x, y)
+        o, p = m + 1, n + 1
+        interpolated_function = bilinear_interpolate(
+            Point3D(ps[m], ts[n], geothermal_gradient[n, m]),  # Note the order of indices!
+            Point3D(ps[m], ts[p], geothermal_gradient[p, m]),  # Note the order of indices!
+            Point3D(ps[o], ts[n], geothermal_gradient[n, o]),  # Note the order of indices!
+            Point3D(ps[o], ts[p], geothermal_gradient[p, o])  # Note the order of indices!
         )
-        p_next = runge_kutta_iter(trace[k], f, h)
-        push!(trace, p_next)
+        interpolated_function(x, y)
+    end
+end
+
+function generate_trace(geothermal_gradient::DataFrame, p0::Point2D, h=0.01, n=1000)
+    ps = float(names(geothermal_gradient))
+    ts = float(geothermal_gradient[Symbol("T(K)\\P(GPa)")])
+
+    trace = Point2D[]
+    push!(trace, p0)
+    f = inject_find_lower_bound(ps, ts, geothermal_gradient)
+    for i = 1:(n - 1)
+        push!(trace, runge_kutta_iter(trace[i], f, h))
     end
     trace
 end
