@@ -9,12 +9,12 @@ using Test
 
 using Geotherm
 
-@test within_rectangle(Rectangle(1, 10, 5, 20), Point(6, 4)) == false
+@test in(Point2D(6, 4), Rectangle(1, 10, 5, 20)) == false
 
-@test within_rectangle(Rectangle(1, 10, 5, 20), Point(6, 15)) == true
+@test in(Point2D(6, 15), Rectangle(1, 10, 5, 20)) == true
 
-@test within_rectangle(Rectangle(1, 10, 5, 20), Point(5, 5)) == true
+@test in(Point2D(5, 5), Rectangle(1, 10, 5, 20)) == true
 
-@test within_rectangle(Rectangle(1, 10, 5, 20), Point(1, 15)) == true
+@test in(Point2D(1, 15), Rectangle(1, 10, 5, 20)) == true
 
-@test within_rectangle(Rectangle(1, 10, 5, 20), Point(1, 5)) == true
+@test in(Point2D(1, 5), Rectangle(1, 10, 5, 20)) == true
