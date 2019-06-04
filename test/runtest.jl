@@ -1,12 +1,7 @@
-#!/usr/bin/env julia
-
+using Geotherm
 using Test
 
-using Geotherm
-
-println("Test 1")
-@time @test include("Geometry.jl")
-println("Test 2")
-@time @test include("Interpolate.jl")
-
-true
+@testset "Geotherm.jl" begin
+    @test include("Geometry.jl")
+    @test include("Interpolate.jl")
+end
