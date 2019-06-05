@@ -16,7 +16,7 @@ using StaticArrays: FieldVector
 import Base: in
 
 export Point, Point2D, Point3D,
-    Rectangle, rectangle_vertices, within_rectangle,
+    Rectangle, rectangle_vertices,
     in
 
 abstract type Point{N, Float64} <: FieldVector{N, Float64} end
