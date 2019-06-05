@@ -42,10 +42,9 @@ struct Rectangle{T <: Real}
         ly != uy || error("The `ly` and `uy` arguments cannot be the same!")
         new(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
     end
-    Rectangle{T}(rec::Rectangle) where T <: Real = new(rec.lx, rec.rx, rec.ly, rec.uy)
 end
-
 Rectangle(lx::T, rx::T, ly::T, uy::T) where T <: Real = Rectangle{T}(lx, rx, ly, uy)
+Rectangle(rec::Rectangle{T}) where {T} = Rectangle(rec.lx, rec.rx, rec.ly, rec.uy)
 
 function rectangle_vertices(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
