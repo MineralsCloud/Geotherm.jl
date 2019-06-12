@@ -20,14 +20,14 @@ export Point, Point2D, Point3D,
     Rectangle, rectangle_vertices,
     in
 
-abstract type Point{N, Float64} <: FieldVector{N, Float64} end
+abstract type Point{N,Float64} <: FieldVector{N,Float64} end
 
-struct Point2D <: Point{2, Float64}
+struct Point2D <: Point{2,Float64}
     x::Float64
     y::Float64
 end
 
-struct Point3D <: Point{3, Float64}
+struct Point3D <: Point{3,Float64}
     x::Float64
     y::Float64
     z::Float64
@@ -47,7 +47,7 @@ end
 Rectangle(lx::T, rx::T, ly::T, uy::T) where T <: Real = Rectangle{T}(lx, rx, ly, uy)
 Rectangle(rec::Rectangle{T}) where {T} = Rectangle(rec.lx, rec.rx, rec.ly, rec.uy)
 
-function rectangle_vertices(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
+function rectangle_vertices(rec::Rectangle{T})::NTuple{4,Point2D} where T <: Real
     @extract rec : lx, rx, ly, uy  # lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
