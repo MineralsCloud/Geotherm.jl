@@ -17,7 +17,7 @@ using Geotherm.Geometry: Point2D
 export runge_kutta_iter, runge_kutta
 
 function runge_kutta_iter(p::Point2D, f::Function, h = 0.01)
-    @extract p : x y  # x, y = p.x, p.y
+    @extract p x y  # x, y = p.x, p.y
     k1 = h * f(x, y)
     k2 = h * f(x + h / 2, y + k1 / 2)
     k3 = h * f(x + h / 2, y + k2 / 2)

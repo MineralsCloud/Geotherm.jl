@@ -23,8 +23,8 @@ export linear_interpolate, bilinear_interpolate
 Return a function of the linear interpolation between any 2 points `(x1, f(x1))` and `(x2, g(x2))`.
 """
 function linear_interpolate(a::Point2D, b::Point2D)::Function
-    @extract a : x1=x y1=y  # x1, y1 = a.x, a.y
-    @extract b : x2=x y2=y  # x2, y2 = b.x, b.y
+    @extract a x1=x y1=y  # x1, y1 = a.x, a.y
+    @extract b x2=x y2=y  # x2, y2 = b.x, b.y
     x1 != x2 || error("The x-coordinates of the 2 arguments `a` and `b` cannot be equal!")
 
     x->((x2 - x) * y1 + (x - x1) * y2) / (x2 - x1)
