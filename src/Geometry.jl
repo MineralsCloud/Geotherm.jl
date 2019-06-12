@@ -11,6 +11,7 @@ julia>
 """
 module Geometry
 
+using ExtractMacro
 using StaticArrays: FieldVector
 
 import Base: in
@@ -47,12 +48,12 @@ Rectangle(lx::T, rx::T, ly::T, uy::T) where T <: Real = Rectangle{T}(lx, rx, ly,
 Rectangle(rec::Rectangle{T}) where {T} = Rectangle(rec.lx, rec.rx, rec.ly, rec.uy)
 
 function rectangle_vertices(rec::Rectangle{T})::NTuple{4, Point2D} where T <: Real
-    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
+    @extract rec : lx, rx, ly, uy  # lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
 
 function in(c::Point2D, rec::Rectangle{T})::Bool where T <: Real
-    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
+    @extract rec : lx, rx, ly, uy
     lx <= c.x <= rx && ly <= c.y <= uy
 end
 
