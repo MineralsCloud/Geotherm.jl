@@ -12,6 +12,8 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
 ExtractMacro = "0.3"
+BisectPy = "0.1"
+StaticArrays = "0.9"
 julia = "1"
 
 [extras]
