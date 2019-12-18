@@ -25,8 +25,7 @@ Return a function of the linear interpolation between any 2 points `(x1, f(x1))`
 function linear_interpolate(a::Point2D, b::Point2D)::Function
     @extract a x1 = x y1 = y  # x1, y1 = a.x, a.y
     @extract b x2 = x y2 = y  # x2, y2 = b.x, b.y
-    x1 != x2 || error("The x-coordinates of the 2 arguments `a` and `b` cannot be equal!")
-
+    @assert(x1 != x2, "The x-coordinates of the 2 arguments `a` and `b` cannot be equal!")
     x -> ((x2 - x) * y1 + (x - x1) * y2) / (x2 - x1)
 end
 linear_interpolate(a::NTuple{2,Float64}, b::NTuple{2,Float64}) =
@@ -43,7 +42,6 @@ function bilinear_interpolate(q11::T, q12::T, q21::T, q22::T)::Function where {T
     y1, y2 = q11.y, q22.y
     z11, z12, z21, z22 = [q11, q12, q21, q22] |> (q -> q.z)
     rec = Rectangle(x1, y1, x2, y2)
-
     function (x, y)
         Point2D(x, y) in rec || error("The point ($x, $y) is out of boundary $rec!")
         v1 = linear_interpolate((x1, z11), (x2, z21))(x)

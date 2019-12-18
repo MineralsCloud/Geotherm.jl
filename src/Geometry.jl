@@ -37,8 +37,8 @@ struct Rectangle{T<:Real}
     ly::T
     uy::T
     function Rectangle{T}(lx::T, rx::T, ly::T, uy::T) where {T<:Real}
-        lx != rx || error("The `lx` and `rx` arguments cannot be the same!")
-        ly != uy || error("The `ly` and `uy` arguments cannot be the same!")
+        @assert(lx != rx, "The `lx` and `rx` arguments cannot be the same!")
+        @assert(ly != uy, "The `ly` and `uy` arguments cannot be the same!")
         new(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
     end
 end
