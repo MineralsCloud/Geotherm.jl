@@ -12,6 +12,7 @@ julia>
 module Integrate
 
 using ExtractMacro
+
 using Geotherm.Geometry: Point2D
 
 export runge_kutta

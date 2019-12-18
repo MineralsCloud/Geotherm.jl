@@ -1,3 +1,3 @@
 using Test
 
-using Geotherm: bind, Point, Rectangle
+using Geotherm.Bind: bind, Point, Rectangle

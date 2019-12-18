@@ -1,7 +1,7 @@
 using Test
 
-using Geotherm
-using Geotherm.Integrate
+using Geotherm.Geometry: Point2D
+using Geotherm.Integrate: runge_kutta_iter, runge_kutta
 
 @testset "Test `runge_kutta`" begin
     @test runge_kutta_iter(
