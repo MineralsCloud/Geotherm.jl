@@ -14,9 +14,7 @@ module Geometry
 using ExtractMacro
 using StaticArrays: FieldVector
 
-import Base: in
-
-export Point, Point2D, Point3D, Rectangle, rectangle_vertices, in
+export Point, Point2D, Point3D, Rectangle, rectangle_vertices
 
 abstract type Point{N,Float64} <: FieldVector{N,Float64} end
 
@@ -50,7 +48,7 @@ function rectangle_vertices(rec::Rectangle{T})::NTuple{4,Point2D} where {T<:Real
     return Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
 
-function in(c::Point2D, rec::Rectangle{T})::Bool where {T<:Real}
+function Base.in(c::Point2D, rec::Rectangle{T})::Bool where {T<:Real}
     @extract rec lx rx ly uy
     return lx <= c.x <= rx && ly <= c.y <= uy
 end
