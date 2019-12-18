@@ -6,6 +6,7 @@ version = "0.1.0"
 [deps]
 BisectPy = "e91bece4-a713-11e8-30d4-f1bdfdaa459e"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+ExtractMacro = "f86d3d12-fd5b-522c-99e9-61577282a1e9"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
