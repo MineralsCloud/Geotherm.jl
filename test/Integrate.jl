@@ -1,11 +1,3 @@
-#=
-TestIntegrate.jl:
-- Julia version: 1.0
-- Author: qz
-- Date: Jun 5, 2019
-=#
-module TestIntegrate
-
 using Test
 
 using Geotherm
@@ -27,6 +19,4 @@ using Geotherm.Integrate
         Point2D(1.02, 1.103469031571201),
         Point2D(1.03, 1.157884756885266),
     ]
-end
-
 end
