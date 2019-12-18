@@ -37,7 +37,7 @@ function inject_find_lower_bound(ps, ts, geothermal_gradient)
             Point3D(ps[o], ts[n], geothermal_gradient[n, o]),  # Note the order of indices!
             Point3D(ps[o], ts[p], geothermal_gradient[p, o]),   # Note the order of indices!
         )
-        interpolated_function(x, y)
+        return interpolated_function(x, y)
     end
 end
 
