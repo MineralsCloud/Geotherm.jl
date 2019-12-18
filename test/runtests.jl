@@ -2,6 +2,6 @@ using Geotherm
 using Test
 
 @testset "Geotherm.jl" begin
-    @test include("TestGeometry.jl")
-    @test include("TestIntegrate.jl")
+    @test include("Geometry.jl")
+    @test include("Integrate.jl")
 end
