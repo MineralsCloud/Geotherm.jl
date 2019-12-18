@@ -1,4 +1,8 @@
-# Geotherm.jl
+```@meta
+CurrentModule = Geotherm
+```
+
+# Geotherm
 
 ```@index
 ```

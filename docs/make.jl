@@ -1,17 +1,21 @@
-using Documenter, Geotherm
+using Geotherm
+using Documenter
 
 makedocs(;
     modules=[Geotherm],
-    format=Documenter.HTML(),
+    authors="Qi Zhang <singularitti@outlook.com>",
+    repo="https://github.com/MineralsCloud/Geotherm.jl/blob/{commit}{path}#L{line}",
+    sitename="Geotherm.jl",
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
+        canonical="https://MineralsCloud.github.io/Geotherm.jl",
+        assets=String[],
+    ),
     pages=[
         "Home" => "index.md",
     ],
-    repo="https://github.com/singularitti/Geotherm.jl/blob/{commit}{path}#L{line}",
-    sitename="Geotherm.jl",
-    authors="Qi Zhang <singularitti@outlook.com>",
-    assets=String[],
 )
 
 deploydocs(;
-    repo="github.com/singularitti/Geotherm.jl",
+    repo="github.com/MineralsCloud/Geotherm.jl",
 )
