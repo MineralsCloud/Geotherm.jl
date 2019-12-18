@@ -19,12 +19,14 @@ using Geotherm.Geometry: Point2D, Point3D, Rectangle
 using Geotherm.Interpolate: bilinear_interpolate
 using Geotherm.Integrate: runge_kutta_iter
 
-export find_lower_bounds, inject_find_lower_bound, generate_trace
+export generate_trace
 
+# This is a helper function and should not be exported.
 function find_lower_bounds(xs, ys)::Function
     return (x, y) -> bisect_right(xs, x) - 1, bisect_right(ys, y) - 1
 end
 
+# This is a helper function and should not be exported.
 function inject_find_lower_bound(ps, ts, geothermal_gradient)
     return function (x, y)
         m, n = find_lower_bounds(ps, ts)(x, y)

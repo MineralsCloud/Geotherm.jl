@@ -14,8 +14,9 @@ module Integrate
 using ExtractMacro
 using Geotherm.Geometry: Point2D
 
-export runge_kutta_iter, runge_kutta
+export runge_kutta
 
+# This is a helper function and should not be exported.
 function runge_kutta_iter(p::Point2D, f::Function, h = 0.01)
     @extract p x y  # x, y = p.x, p.y
     k1 = h * f(x, y)
