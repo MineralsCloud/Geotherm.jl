@@ -11,7 +11,7 @@ julia>
 """
 module Geometry
 
-using ExtractMacro
+using ExtractMacro: @extract
 using StaticArrays: FieldVector
 
 export Point, Point2D, Point3D, Rectangle, rectangle_vertices
