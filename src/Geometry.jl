@@ -14,7 +14,7 @@ module Geometry
 using ExtractMacro: @extract
 using StaticArrays: FieldVector
 
-export Point, Point2D, Point3D, Rectangle, rectangle_vertices
+export Point, Point2D, Point3D, Rectangle, vertices
 
 abstract type Point{N,T} <: FieldVector{N,T<:Real} end
 
@@ -43,7 +43,7 @@ end
 Rectangle(lx::T, rx::T, ly::T, uy::T) where {T} = Rectangle{T}(lx, rx, ly, uy)
 Rectangle(rec::Rectangle) = Rectangle(rec.lx, rec.rx, rec.ly, rec.uy)
 
-function rectangle_vertices(rec::Rectangle)
+function vertices(rec::Rectangle)
     @extract rec lx rx ly uy  # lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     return Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
