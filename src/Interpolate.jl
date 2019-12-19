@@ -11,7 +11,7 @@ julia>
 """
 module Interpolate
 
-using ExtractMacro
+using ExtractMacro: @extract
 
 using Geotherm.Geometry: Point2D, Point3D, Rectangle
 
@@ -46,7 +46,7 @@ function bilinear_interpolate(q11::T, q12::T, q21::T, q22::T)::Function where {T
         Point2D(x, y) in rec || error("The point ($x, $y) is out of boundary $rec!")
         v1 = linear_interpolate((x1, z11), (x2, z21))(x)
         v2 = linear_interpolate((x1, z12), (x2, z22))(x)
-        linear_interpolate((y1, v1), (y2, v2))(y)
+        return linear_interpolate((y1, v1), (y2, v2))(y)
     end
 end
 

@@ -11,7 +11,7 @@ julia>
 """
 module Integrate
 
-using ExtractMacro
+using ExtractMacro: @extract
 
 using Geotherm.Geometry: Point2D
 
