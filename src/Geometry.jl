@@ -37,7 +37,7 @@ struct Rectangle{T<:Real}
     function Rectangle{T}(lx::T, rx::T, ly::T, uy::T) where {T}
         @assert(lx != rx, "The `lx` and `rx` arguments cannot be the same!")
         @assert(ly != uy, "The `ly` and `uy` arguments cannot be the same!")
-        new(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
+        return new(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
     end
 end
 Rectangle(lx::T, rx::T, ly::T, uy::T) where {T} = Rectangle{T}(lx, rx, ly, uy)
