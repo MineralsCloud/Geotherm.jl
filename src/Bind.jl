@@ -22,9 +22,7 @@ using Geotherm.Integrate: runge_kutta_iter
 export generate_trace
 
 # This is a helper function and should not be exported.
-function find_lower_bounds(xs, ys)::Function
-    return (x, y) -> bisect_right(xs, x) - 1, bisect_right(ys, y) - 1
-end
+find_lower_bounds(xs, ys) = (x, y) -> bisect_right(xs, x) - 1, bisect_right(ys, y) - 1
 
 # This is a helper function and should not be exported.
 function inject_find_lower_bound(ps, ts, geothermal_gradient)
