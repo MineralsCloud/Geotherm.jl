@@ -28,7 +28,7 @@ end
 function runge_kutta(p0::Point2D, f, h = 0.01, n = 1000)
     trace = Point2D[p0]
     for i in 1:(n-1)
-        p_next = runge_kutta_iter(trace[i], f)
+        p_next = runge_kutta_iter(trace[i], f, h)
         push!(trace, p_next)
     end
     return trace
