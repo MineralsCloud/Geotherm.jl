@@ -11,7 +11,6 @@ julia>
 """
 module Geometry
 
-using ExtractMacro: @extract
 using StaticArrays: FieldVector
 
 export Point, Point2D, Point3D, Rectangle, vertices
@@ -34,22 +33,22 @@ struct Rectangle{T<:Real}
     rx::T
     ly::T
     uy::T
-    function Rectangle{T}(lx::T, rx::T, ly::T, uy::T) where {T}
-        @assert(lx != rx, "The `lx` and `rx` arguments cannot be the same!")
-        @assert(ly != uy, "The `ly` and `uy` arguments cannot be the same!")
-        return new(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
+    function Rectangle(lx, rx, ly, uy)
+        @assert lx != rx "The `lx` and `rx` arguments cannot be the same!"
+        @assert ly != uy "The `ly` and `uy` arguments cannot be the same!"
+        T = Base.promote_typeof(lx, rx, ly, uy)
+        return new{T}(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
     end
 end
-Rectangle(lx::T, rx::T, ly::T, uy::T) where {T} = Rectangle{T}(lx, rx, ly, uy)
-Rectangle(rec::Rectangle) = Rectangle(rec.lx, rec.rx, rec.ly, rec.uy)
+Rectangle(rec::Rectangle) = rec
 
 function vertices(rec::Rectangle)
-    @extract rec lx rx ly uy  # lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
+    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     return Point2D(lx, ly), Point2D(lx, uy), Point2D(rx, ly), Point2D(rx, uy)
 end
 
 function Base.in(c::Point2D, rec::Rectangle)
-    @extract rec lx rx ly uy
+    lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
     return lx <= c.x <= rx && ly <= c.y <= uy
 end
 

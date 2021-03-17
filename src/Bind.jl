@@ -22,9 +22,7 @@ using Geotherm.Integrate: runge_kutta_iter
 export generate_trace
 
 # This is a helper function and should not be exported.
-function find_lower_bounds(xs, ys)::Function
-    return (x, y) -> bisect_right(xs, x) - 1, bisect_right(ys, y) - 1
-end
+find_lower_bounds(xs, ys) = (x, y) -> bisect_right(xs, x) - 1, bisect_right(ys, y) - 1
 
 # This is a helper function and should not be exported.
 function inject_find_lower_bound(ps, ts, geothermal_gradient)
@@ -44,8 +42,7 @@ end
 function generate_trace(geothermal_gradient::DataFrame, p0::Point2D, h = 0.01, n = 1000)
     ps = float(names(geothermal_gradient))
     ts = float(geothermal_gradient[Symbol("T(K)\\P(GPa)")])
-    trace = Point2D[]
-    push!(trace, p0)
+    trace = Point2D[p0]
     f = inject_find_lower_bound(ps, ts, geothermal_gradient)
     for i in 1:(n-1)
         push!(trace, runge_kutta_iter(trace[i], f, h))
