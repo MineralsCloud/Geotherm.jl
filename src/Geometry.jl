@@ -33,13 +33,13 @@ struct Rectangle{T<:Real}
     rx::T
     ly::T
     uy::T
-    function Rectangle{T}(lx::T, rx::T, ly::T, uy::T) where {T}
+    function Rectangle(lx, rx, ly, uy)
         @assert lx != rx "The `lx` and `rx` arguments cannot be the same!"
         @assert ly != uy "The `ly` and `uy` arguments cannot be the same!"
-        return new(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
+        T = Base.promote_typeof(lx, rx, ly, uy)
+        return new{T}(min(lx, rx), max(lx, rx), min(ly, uy), max(ly, uy))
     end
 end
-Rectangle(lx::T, rx::T, ly::T, uy::T) where {T} = Rectangle{T}(lx, rx, ly, uy)
 Rectangle(rec::Rectangle) = rec
 
 function vertices(rec::Rectangle)
