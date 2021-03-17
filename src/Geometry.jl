@@ -40,7 +40,7 @@ struct Rectangle{T<:Real}
     end
 end
 Rectangle(lx::T, rx::T, ly::T, uy::T) where {T} = Rectangle{T}(lx, rx, ly, uy)
-Rectangle(rec::Rectangle) = Rectangle(rec.lx, rec.rx, rec.ly, rec.uy)
+Rectangle(rec::Rectangle) = rec
 
 function vertices(rec::Rectangle)
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
