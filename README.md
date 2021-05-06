@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/MineralsCloud/Geotherm.jl/workflows/CI/badge.svg)](https://github.com/MineralsCloud/Geotherm.jl/actions)
 [![Build Status](https://travis-ci.com/MineralsCloud/Geotherm.jl.svg?branch=master)](https://travis-ci.com/MineralsCloud/Geotherm.jl)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/singularitti/Geotherm.jl?svg=true)](https://ci.appveyor.com/project/singularitti/Geotherm-jl)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/MineralsCloud/Geotherm.jl?svg=true)](https://ci.appveyor.com/project/singularitti/Geotherm-jl)
 [![Build Status](https://cloud.drone.io/api/badges/MineralsCloud/Geotherm.jl/status.svg)](https://cloud.drone.io/MineralsCloud/Geotherm.jl)
 [![Build Status](https://api.cirrus-ci.com/github/MineralsCloud/Geotherm.jl.svg)](https://cirrus-ci.com/github/MineralsCloud/Geotherm.jl)
 [![Coverage](https://codecov.io/gh/MineralsCloud/Geotherm.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/MineralsCloud/Geotherm.jl)
