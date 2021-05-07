@@ -1,14 +1,3 @@
-"""
-# module Integrate
-
-
-
-# Examples
-
-```jldoctest
-julia>
-```
-"""
 module Integrate
 
 using Geotherm.Geometry: Point2D

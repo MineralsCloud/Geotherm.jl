@@ -1,14 +1,3 @@
-"""
-# module Geometry
-
-
-
-# Examples
-
-```jldoctest
-julia>
-```
-"""
 module Geometry
 
 using StaticArrays: FieldVector

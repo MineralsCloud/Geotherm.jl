@@ -1,14 +1,3 @@
-"""
-# module Interpolate
-
-
-
-# Examples
-
-```jldoctest
-julia>
-```
-"""
 module Interpolate
 
 using Geotherm.Geometry: Point2D, Point3D, Rectangle

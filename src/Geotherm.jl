@@ -1,14 +1,3 @@
-"""
-# module Geotherm
-
-
-
-# Examples
-
-```jldoctest
-julia>
-```
-"""
 module Geotherm
 
 include("Geometry.jl")
