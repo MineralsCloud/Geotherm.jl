@@ -9,4 +9,4 @@
 [![pipeline status](https://gitlab.com/singularitti/geotherm.jl/badges/master/pipeline.svg)](https://gitlab.com/singularitti/geotherm.jl/-/commits/master)
 [![coverage report](https://gitlab.com/singularitti/geotherm.jl/badges/master/coverage.svg)](https://gitlab.com/singularitti/geotherm.jl/-/commits/master)
 [![Coverage](https://codecov.io/gh/MineralsCloud/Geotherm.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/MineralsCloud/Geotherm.jl)
-[![Coverage](https://coveralls.io/repos/github/MineralsCloud/Geotherm.jl/badge.svg?branch=master)](https://coveralls.io/github/MineralsCloud/Geotherm.jl?branch=master)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
