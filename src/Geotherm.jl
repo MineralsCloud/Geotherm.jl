@@ -15,8 +15,8 @@ export Temp, Press, generate_trace
 
 # This is a helper function and should not be exported.
 function inject_find_lower_bound(ps, ts, geothermal_gradient)
-    return function (x, y)
-        i, j = find_le(ps, x), find_le(ts, y)
+    return function (p, t)
+        i, j = find_le(ps, p), find_le(ts, t)
         k, l = i + 1, j + 1
         interpolated_function = bilinear_interpolate(
             Point3D(ps[i], ts[j], geothermal_gradient[j, i]),  # Note the order of indices!
@@ -24,7 +24,7 @@ function inject_find_lower_bound(ps, ts, geothermal_gradient)
             Point3D(ps[k], ts[j], geothermal_gradient[j, k]),  # Note the order of indices!
             Point3D(ps[k], ts[l], geothermal_gradient[l, k]),   # Note the order of indices!
         )
-        return interpolated_function(x, y)
+        return interpolated_function(p, t)
     end
 end
 
