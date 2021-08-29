@@ -1,5 +1,3 @@
-using Test
-
 using Geotherm.Geometry: Point2D
 using Geotherm.Integrate: runge_kutta_iter, runge_kutta
 
