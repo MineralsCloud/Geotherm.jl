@@ -5,7 +5,6 @@ include("Interpolate.jl")
 include("Integrate.jl")
 
 using BisectPy: find_le
-using DataFrames: DataFrame
 using DimensionalData: AbstractDimMatrix, Dim, dims
 
 using Geotherm.Geometry: Point2D, Point3D, Rectangle
