@@ -10,11 +10,18 @@ struct Point2D{T} <: Point{2,T}
     x::T
     y::T
 end
-
+function Point2D(x, y)
+    T = Base.promote_typeof(x, y)
+    return Point2D{T}(x, y)
+end
 struct Point3D{T} <: Point{3,T}
     x::T
     y::T
     z::T
+end
+function Point3D(x, y, z)
+    T = Base.promote_typeof(x, y, z)
+    return Point3D{T}(x, y, z)
 end
 
 struct Rectangle{T}
