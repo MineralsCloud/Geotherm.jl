@@ -4,8 +4,7 @@ using StaticArrays: FieldVector
 
 export Point, Point2D, Point3D, Rectangle, vertices
 
-abstract type Point{N,T} <: FieldVector{N,T} end
-
+abstract type Point{N,T} end
 struct Point2D{T} <: Point{2,T}
     x::T
     y::T
