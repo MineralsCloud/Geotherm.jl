@@ -4,7 +4,7 @@ include("Geometry.jl")
 include("Interpolate.jl")
 include("Integrate.jl")
 
-using BisectPy: find_le
+using BisectPy: bisect_right
 using DimensionalData: AbstractDimMatrix, Dim, dims
 
 using Geotherm.Geometry: Point2D, Point3D, Rectangle
@@ -12,6 +12,12 @@ using Geotherm.Interpolate: bilinear_interpolate
 using Geotherm.Integrate: runge_kutta_iter
 
 export Temp, Press, generate_trace
+
+# This is different from `BisectPy.find_le`, which returns the value!
+function find_le(a, x)
+    i = bisect_right(a, x)
+    return i > 1 ? i - 1 : nothing
+end
 
 # This is a helper function and should not be exported.
 function inject_find_lower_bound(ps, ts, geothermal_gradient)
