@@ -13,19 +13,17 @@ using Geotherm.Integrate: runge_kutta_iter
 
 export generate_trace
 
-# This is a helper function and should not be exported.
-find_lower_bounds(xs, ys) = (x, y) -> (find_le(xs, x), find_le(ys, y))
 
 # This is a helper function and should not be exported.
 function inject_find_lower_bound(ps, ts, geothermal_gradient)
     return function (x, y)
-        m, n = find_lower_bounds(ps, ts)(x, y)
-        o, p = m + 1, n + 1
+        i, j = find_le(ps, x), find_le(ts, y)
+        k, l = i + 1, j + 1
         interpolated_function = bilinear_interpolate(
-            Point3D(ps[m], ts[n], geothermal_gradient[n, m]),  # Note the order of indices!
-            Point3D(ps[m], ts[p], geothermal_gradient[p, m]),  # Note the order of indices!
-            Point3D(ps[o], ts[n], geothermal_gradient[n, o]),  # Note the order of indices!
-            Point3D(ps[o], ts[p], geothermal_gradient[p, o]),   # Note the order of indices!
+            Point3D(ps[i], ts[j], geothermal_gradient[j, i]),  # Note the order of indices!
+            Point3D(ps[i], ts[l], geothermal_gradient[l, i]),  # Note the order of indices!
+            Point3D(ps[k], ts[j], geothermal_gradient[j, k]),  # Note the order of indices!
+            Point3D(ps[k], ts[l], geothermal_gradient[l, k]),   # Note the order of indices!
         )
         return interpolated_function(x, y)
     end
