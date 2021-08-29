@@ -1,7 +1,5 @@
 module Geometry
 
-using StaticArrays: FieldVector
-
 export Point, Point2D, Point3D, Rectangle, vertices
 
 abstract type Point{N,T} end
