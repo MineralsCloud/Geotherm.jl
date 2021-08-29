@@ -6,13 +6,13 @@ include("Integrate.jl")
 
 using BisectPy: find_le
 using DataFrames: DataFrame
+using DimensionalData: AbstractDimMatrix, Dim, dims
 
 using Geotherm.Geometry: Point2D, Point3D, Rectangle
 using Geotherm.Interpolate: bilinear_interpolate
 using Geotherm.Integrate: runge_kutta_iter
 
-export generate_trace
-
+export Temp, Press, generate_trace
 
 # This is a helper function and should not be exported.
 function inject_find_lower_bound(ps, ts, geothermal_gradient)
@@ -29,9 +29,12 @@ function inject_find_lower_bound(ps, ts, geothermal_gradient)
     end
 end
 
-function generate_trace(geothermal_gradient::DataFrame, p0::Point2D, h = 0.01, n = 1000)
-    ps = float(names(geothermal_gradient))
-    ts = float(geothermal_gradient[Symbol("T(K)\\P(GPa)")])
+const Temp = Dim{:Temperature}
+const Press = Dim{:Pressure}
+const Gradient = AbstractDimMatrix{T,<:Union{Tuple{Temp,Press},Tuple{Press,Temp}}} where {T}
+
+function generate_trace(geothermal_gradient::Gradient, p0::Point2D, h = 0.01, n = 1000)
+    ps, ts = dims(geothermal_gradient, (Press, Temp))
     trace = Point2D[p0]
     f = inject_find_lower_bound(ps, ts, geothermal_gradient)
     for i in 1:(n-1)
