@@ -30,9 +30,13 @@ end
 
 const Temp = Dim{:Temperature}
 const Press = Dim{:Pressure}
-const Gradient = AbstractDimMatrix{T,<:Union{Tuple{Temp,Press},Tuple{Press,Temp}}} where {T}
 
-function generate_trace(geothermal_gradient::Gradient, p0::Point2D, h = 0.01, n = 1000)
+function generate_trace(
+    geothermal_gradient::AbstractDimMatrix{T,<:Tuple{Temp,Press}},
+    p0::Point2D,
+    h = 0.01,
+    n = 1000,
+) where {T}
     ps, ts = dims(geothermal_gradient, (Press, Temp))
     trace = Point2D[p0]
     f = inject_find_lower_bound(ps, ts, geothermal_gradient)
@@ -41,5 +45,11 @@ function generate_trace(geothermal_gradient::Gradient, p0::Point2D, h = 0.01, n 
     end
     return trace
 end
+generate_trace(
+    geothermal_gradient::AbstractDimMatrix{T,<:Tuple{Press,Temp}},
+    p0::Point2D,
+    h = 0.01,
+    n = 1000,
+) where {T} = generate_trace(geothermal_gradient', p0, h, n)
 
 end
