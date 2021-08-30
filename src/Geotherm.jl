@@ -37,6 +37,11 @@ end
 const Temp = Dim{:Temperature}
 const Press = Dim{:Pressure}
 
+"""
+    generate_trace(geothermal_gradient::AbstractDimMatrix, p0::Point2D, h=0.01, n=1000)
+
+Generate a trace of `Point`s specifiying pressure and temperature.
+"""
 function generate_trace(
     geothermal_gradient::AbstractDimMatrix{T,<:Tuple{Temp,Press}},
     p0::Point2D,
