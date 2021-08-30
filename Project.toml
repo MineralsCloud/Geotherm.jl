@@ -1,7 +1,7 @@
 name = "Geotherm"
 uuid = "8d306a12-9b36-11e8-3bde-e7538e1f5b4a"
 authors = ["Qi Zhang <singularitti@outlook.com>"]
-version = "0.1.0"
+version = "0.1.1-DEV"
 
 [deps]
 DimensionalData = "0703355e-b756-11e9-17c0-8b28908087d0"
