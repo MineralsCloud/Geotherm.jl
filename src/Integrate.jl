@@ -14,6 +14,11 @@ function runge_kutta_iter(p::Point2D, f, h = 0.01)
     return Point2D(x + h, y + (k1 + 2 * k2 + 2 * k3 + k4) / 6)
 end
 
+"""
+    runge_kutta(p0::Point2D, f, h=0.01, n=1000)
+
+Do a Runge–Kutta fourth-order integration of function `f` with starting point `p0`, step `n`, and step-size `h`.
+"""
 function runge_kutta(p0::Point2D, f, h = 0.01, n = 1000)
     trace = Point2D[p0]
     for i in 1:(n-1)
