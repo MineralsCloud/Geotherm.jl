@@ -65,9 +65,9 @@ end
 
 Test if point `p` is in rectangle `rec`.
 """
-function Base.in(c::Point2D, rec::Rectangle)
+function Base.in(p::Point2D, rec::Rectangle)
     lx, rx, ly, uy = rec.lx, rec.rx, rec.ly, rec.uy
-    return lx <= c.x <= rx && ly <= c.y <= uy
+    return lx <= p.x <= rx && ly <= p.y <= uy
 end
 
 end
