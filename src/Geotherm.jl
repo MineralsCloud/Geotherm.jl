@@ -5,7 +5,8 @@ include("Interpolate.jl")
 include("Integrate.jl")
 
 using BisectPy: bisect_right
-using DimensionalData: AbstractDimMatrix, Dim, dims
+import DimensionalData  # Need to load this to run code
+using DimensionalData: AbstractDimMatrix, dims, @dim
 
 using Geotherm.Geometry: Point2D, Point3D, Rectangle
 using Geotherm.Interpolate: bilinear_interpolate
@@ -34,8 +35,8 @@ function inject_find_lower_bound(ps, ts, geothermal_gradient)
     end
 end
 
-const Temp = Dim{:Temperature}
-const Press = Dim{:Pressure}
+@dim Temp "Temperature"
+@dim Press "Pressure"
 
 """
     generate_trace(geothermal_gradient::AbstractDimMatrix, p0::Point2D, h=0.01, n=1000)
