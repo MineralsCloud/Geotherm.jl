@@ -4,8 +4,9 @@ CurrentModule = Geotherm
 
 # Geotherm
 
-```@index
+Documentation for [Geotherm](https://github.com/MineralsCloud/Geotherm.jl).
 
+```@index
 ```
 
 ```@autodocs

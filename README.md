@@ -10,3 +10,9 @@
 [![coverage report](https://gitlab.com/singularitti/geotherm.jl/badges/master/coverage.svg)](https://gitlab.com/singularitti/geotherm.jl/-/jobs)
 [![Coverage](https://codecov.io/gh/MineralsCloud/Geotherm.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/MineralsCloud/Geotherm.jl)
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
+
+For corresponding paper, please have a look at Ref. 1.
+
+## References
+
+1. [Cardona, J. J. V. *et al.* Influence of the iron spin crossover in ferropericlase on the lower mantle geotherm. *Geophysical Research Letters* **44,** 4863–4871 (2017).](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2017GL073294)

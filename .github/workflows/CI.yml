@@ -67,5 +67,6 @@ jobs:
             doctest(Geotherm)'
       - run: julia --project=docs docs/make.jl
         env:
+          JULIA_PKG_SERVER: ""
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
