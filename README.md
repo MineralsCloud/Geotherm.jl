@@ -15,4 +15,4 @@ For corresponding paper, please have a look at Ref. 1.
 
 ## References
 
-1. [Cardona, J. J. V. *et al.* Influence of the iron spin crossover in ferropericlase on the lower mantle geotherm. *Geophysical Research Letters* **44,** 4863–4871 (2017).](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2017GL073294)
+1. [Cardona, J. J. V. _et al._ Influence of the iron spin crossover in ferropericlase on the lower mantle geotherm. _Geophysical Research Letters_ **44,** 4863–4871 (2017).](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2017GL073294)
