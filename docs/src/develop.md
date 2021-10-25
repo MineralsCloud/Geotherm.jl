@@ -7,11 +7,11 @@ Similar to section "[Installation](@ref)", run
 ```julia
 julia> using Pkg
 
-julia> pkg"dev AbInitioSoftwareBase"
+julia> pkg"dev Geotherm"
 ```
 
 Then the package will be cloned to your local machine at a path. On macOS, by default is
-located at `~/.julia/dev/AbInitioSoftwareBase` unless you modify the `JULIA_DEPOT_PATH`
+located at `~/.julia/dev/Geotherm` unless you modify the `JULIA_DEPOT_PATH`
 environment variable.
 (See [Julia's official documentation](http://docs.julialang.org/en/v1/manual/environment-variables/#JULIA_DEPOT_PATH-1)
 on how to do this.) In the following text, we will call it `PKGROOT`.
