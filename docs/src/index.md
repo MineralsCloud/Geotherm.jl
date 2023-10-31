@@ -1,42 +1,77 @@
-```@meta
-CurrentModule = Geotherm
-```
-
 # Geotherm
 
 Documentation for [Geotherm](https://github.com/MineralsCloud/Geotherm.jl).
 
-The code is
-[hosted on GitHub](https://github.com/MineralsCloud/Geotherm.jl), with
-some continuous integration services to test its validity.
-For corresponding paper, please have a look at Ref. 1.
+See the [Index](@ref main-index) for the complete list of documented functions
+and types.
+
+The code, which is [hosted on GitHub](https://github.com/MineralsCloud/Geotherm.jl), is tested
+using various continuous integration services for its validity.
 
 This repository is created and maintained by
-[@singularitti](https://github.com/singularitti). You are very welcome to
-contribute.
+[@singularitti](https://github.com/singularitti), and contributions are highly welcome.
 
-## Compatibility
+## Package features
 
-- [Julia version: `v1.0.0` to `v1.6.2`](https://julialang.org/downloads/)
-- Dependencies:
-  - [`BisectPy.jl`](https://github.com/singularitti/BisectPy.jl) `v1.0.0` and above
-  - [`DimensionalData.jl`](https://github.com/rafaqz/DimensionalData.jl) `v0.4.0` and
-    above
-- OS: macOS, Linux, Windows, and FreeBSD
-- Architecture: x86, x64, ARM
 
-## Manual Outline
+
+## Installation
+
+The package can be installed with the Julia package manager.
+From [the Julia REPL](https://docs.julialang.org/en/v1/stdlib/REPL/), type `]` to enter
+the [Pkg mode](https://docs.julialang.org/en/v1/stdlib/REPL/#Pkg-mode) and run:
+
+```julia-repl
+pkg> add Geotherm
+```
+
+Or, equivalently, via [`Pkg.jl`](https://pkgdocs.julialang.org/v1/):
+
+```@repl
+import Pkg; Pkg.add("Geotherm")
+```
+
+## Documentation
+
+- [**STABLE**](https://MineralsCloud.github.io/Geotherm.jl/stable) — **documentation of the most recently tagged version.**
+- [**DEV**](https://MineralsCloud.github.io/Geotherm.jl/dev) — _documentation of the in-development version._
+
+## Project status
+
+The package is developed for and tested against Julia `v1.6` and above on Linux, macOS, and
+Windows.
+
+## Questions and contributions
+
+You can post usage questions on
+[our discussion page](https://github.com/MineralsCloud/Geotherm.jl/discussions).
+
+We welcome contributions, feature requests, and suggestions. If you encounter any problems,
+please open an [issue](https://github.com/MineralsCloud/Geotherm.jl/issues).
+The [Contributing](@ref) page has
+a few guidelines that should be followed when opening pull requests and contributing code.
+
+## Manual outline
 
 ```@contents
 Pages = [
-    "install.md",
-    "develop.md",
-    "api.md",
+    "man/installation.md",
+    "man/troubleshooting.md",
+    "developers/contributing.md",
+    "developers/style-guide.md",
+    "developers/design-principles.md",
 ]
 Depth = 3
+```
+
+## Library outline
+
+```@contents
+Pages = ["lib/public.md", "lib/internals.md"]
 ```
 
 ### [Index](@id main-index)
 
 ```@index
+Pages = ["lib/public.md"]
 ```

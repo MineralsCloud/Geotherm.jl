@@ -5,21 +5,21 @@ DocMeta.setdocmeta!(Geotherm, :DocTestSetup, :(using Geotherm); recursive=true)
 
 makedocs(;
     modules=[Geotherm],
-    authors="Qi Zhang <singularitti@outlook.com>",
+    authors="singularitti <singularitti@outlook.com> and contributors",
     repo="https://github.com/MineralsCloud/Geotherm.jl/blob/{commit}{path}#{line}",
     sitename="Geotherm.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://MineralsCloud.github.io/Geotherm.jl",
+        edit_link="main",
         assets=String[],
     ),
     pages=[
         "Home" => "index.md",
-        "Manual" => ["Installation" => "install.md", "Development" => "develop.md"],
-        "API" => ["api.md"],
     ],
 )
 
 deploydocs(;
     repo="github.com/MineralsCloud/Geotherm.jl",
+    devbranch="main",
 )
