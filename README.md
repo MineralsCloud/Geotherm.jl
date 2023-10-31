@@ -1,35 +1,70 @@
 # Geotherm
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://MineralsCloud.github.io/Geotherm.jl/stable)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://MineralsCloud.github.io/Geotherm.jl/dev)
-[![Build Status](https://github.com/MineralsCloud/Geotherm.jl/workflows/CI/badge.svg)](https://github.com/MineralsCloud/Geotherm.jl/actions)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/MineralsCloud/Geotherm.jl?svg=true)](https://ci.appveyor.com/project/singularitti/Geotherm-jl)
-[![Build Status](https://cloud.drone.io/api/badges/MineralsCloud/Geotherm.jl/status.svg)](https://cloud.drone.io/MineralsCloud/Geotherm.jl)
-[![Build Status](https://api.cirrus-ci.com/github/MineralsCloud/Geotherm.jl.svg)](https://cirrus-ci.com/github/MineralsCloud/Geotherm.jl)
-[![pipeline status](https://gitlab.com/singularitti/geotherm.jl/badges/master/pipeline.svg)](https://gitlab.com/singularitti/geotherm.jl/-/pipelines)
-[![coverage report](https://gitlab.com/singularitti/geotherm.jl/badges/master/coverage.svg)](https://gitlab.com/singularitti/geotherm.jl/-/jobs)
-[![Coverage](https://codecov.io/gh/MineralsCloud/Geotherm.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/MineralsCloud/Geotherm.jl)
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
+|                                 **Documentation**                                  |                                                                                                 **Build Status**                                                                                                 |                                        **Others**                                         |
+| :--------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
+| [![Stable][docs-stable-img]][docs-stable-url] [![Dev][docs-dev-img]][docs-dev-url] | [![Build Status][gha-img]][gha-url] [![Build Status][appveyor-img]][appveyor-url] [![Build Status][cirrus-img]][cirrus-url] [![pipeline status][gitlab-img]][gitlab-url] [![Coverage][codecov-img]][codecov-url] | [![GitHub license][license-img]][license-url] [![Code Style: Blue][style-img]][style-url] |
 
-The code is
-[hosted on GitHub](https://github.com/MineralsCloud/Geotherm.jl), with
-some continuous integration services to test its validity.
-For corresponding paper, please have a look at Ref. 1.
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-stable-url]: https://MineralsCloud.github.io/Geotherm.jl/stable
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-url]: https://MineralsCloud.github.io/Geotherm.jl/dev
+[gha-img]: https://github.com/MineralsCloud/Geotherm.jl/workflows/CI/badge.svg
+[gha-url]: https://github.com/MineralsCloud/Geotherm.jl/actions
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/github/MineralsCloud/Geotherm.jl?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/singularitti/Geotherm-jl
+[cirrus-img]: https://api.cirrus-ci.com/github/MineralsCloud/Geotherm.jl.svg
+[cirrus-url]: https://cirrus-ci.com/github/MineralsCloud/Geotherm.jl
+[gitlab-img]: https://gitlab.com/singularitti/Geotherm.jl/badges/main/pipeline.svg
+[gitlab-url]: https://gitlab.com/singularitti/Geotherm.jl/-/pipelines
+[codecov-img]: https://codecov.io/gh/MineralsCloud/Geotherm.jl/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/MineralsCloud/Geotherm.jl
+[license-img]: https://img.shields.io/github/license/MineralsCloud/Geotherm.jl
+[license-url]: https://github.com/MineralsCloud/Geotherm.jl/blob/main/LICENSE
+[style-img]: https://img.shields.io/badge/code%20style-blue-4495d1.svg
+[style-url]: https://github.com/invenia/BlueStyle
+
+The code, which is [hosted on GitHub](https://github.com/MineralsCloud/Geotherm.jl), is tested
+using various continuous integration services for its validity.
 
 This repository is created and maintained by
-[@singularitti](https://github.com/singularitti). You are very welcome to
-contribute.
+[@singularitti](https://github.com/singularitti), and contributions are highly welcome.
 
-## Compatibility
+## Package features
 
-- [Julia version: `v1.0.0` to `v1.6.2`](https://julialang.org/downloads/)
-- Dependencies:
-  - [`BisectPy.jl`](https://github.com/singularitti/BisectPy.jl) `v1.0.0` and above
-  - [`DimensionalData.jl`](https://github.com/rafaqz/DimensionalData.jl) `v0.4.0` and
-    above
-- OS: macOS, Linux, Windows, and FreeBSD
-- Architecture: x86, x64, ARM
 
-## References
 
-1. [Cardona, J. J. V. *et al.* Influence of the iron spin crossover in ferropericlase on the lower mantle geotherm. *Geophysical Research Letters* **44,** 4863–4871 (2017).](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2017GL073294)
+## Installation
+
+The package can be installed with the Julia package manager.
+From [the Julia REPL](https://docs.julialang.org/en/v1/stdlib/REPL/), type `]` to enter
+the [Pkg mode](https://docs.julialang.org/en/v1/stdlib/REPL/#Pkg-mode) and run:
+
+```julia-repl
+pkg> add Geotherm
+```
+
+Or, equivalently, via [`Pkg.jl`](https://pkgdocs.julialang.org/v1/):
+
+```julia
+julia> import Pkg; Pkg.add("Geotherm")
+```
+
+## Documentation
+
+- [**STABLE**][docs-stable-url] — **documentation of the most recently tagged version.**
+- [**DEV**][docs-dev-url] — _documentation of the in-development version._
+
+## Project status
+
+The package is developed for and tested against Julia `v1.6` and above on Linux, macOS, and
+Windows.
+
+## Questions and contributions
+
+You can post usage questions on
+[our discussion page](https://github.com/MineralsCloud/Geotherm.jl/discussions).
+
+We welcome contributions, feature requests, and suggestions. If you encounter any problems,
+please open an [issue](https://github.com/MineralsCloud/Geotherm.jl/issues).
+The [Contributing](@ref) page has
+a few guidelines that should be followed when opening pull requests and contributing code.
